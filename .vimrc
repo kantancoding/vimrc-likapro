@@ -1,11 +1,11 @@
-"map escape to jj
+" Map escape to jj
 imap jj <Esc>
 
-"syntax highlighting
+" Syntax highlighting
 syntax on
 
-"options viewable by using :options
-"set options viewable by using :set all
+" Options viewable by using :options
+" Set options viewable by using :set all
 set background=dark
 set nocompatible
 set laststatus=2
@@ -23,45 +23,57 @@ set incsearch
 set relativenumber
 set cursorline
 
-"column set to column 100
+" Column set to column 100
 set colorcolumn=100
 
-"column color set to black
+" Column color set to grey
 highlight ColorColumn ctermbg=1
 
-"plugins
+" Plugins
 call plug#begin('~/.vim/plugged')
+
+" Make your Vim/Neovim as smart as VSCode
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
-"formatter
+" Formatter
 Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
 
-"comment and uncomment lines
+" Comment and uncomment lines
 Plug 'preservim/nerdcommenter'
 
-"A light and configurable statusline/tabline plugin for Vim
+" A light and configurable statusline/tabline plugin for Vim
 Plug 'itchyny/lightline.vim'
 
-"directory tree
+" Directory tree
 Plug 'scrooloose/nerdtree'
 
-"visualize undo history tree (in vim undo is not linear)
+" Visualize undo history tree (in vim undo is not linear)
 Plug 'mbbill/undotree'
 
-"syntax highlighting for languages
+" Syntax highlighting for languages
 Plug 'sheerun/vim-polyglot'
 
+" Fzf is a general-purpose command-line fuzzy finder
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
+
+" This plugin adds Go language support for Vim, with many features
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+
+" Python code formatter
 Plug 'ambv/black'
+
+" Gruvbox color theme
 Plug 'morhetz/gruvbox'
+
+" Vim-monokai-tasty color theme
 Plug 'patstockwell/vim-monokai-tasty'
+
 call plug#end()
 
-"set mapleader to space
+" Set mapleader to space
 let mapleader = " "
-"maps
+" Maps
 nmap <leader>gd <Plug>(coc-definition)
 nmap <leader>gr <Plug>(coc-references)
 nmap <leader>t :NERDTree<cr>
@@ -245,12 +257,11 @@ nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
 
 """"""""""""""""""""""""coc nvim settings end""""""""""""""""""""""""
 
-" Max line length that prettier will wrap on: a number or 'auto' (use
-" textwidth).
-" default: 'auto'
+" Set the prettier CLI executable path
 let g:prettier#exec_cmd_path = "~/.vim/plugged/vim-prettier/node_modules/prettier"
-let g:prettier#config#print_width = 100
+" Max line length that prettier will wrap on: a number or 'auto'
+let g:prettier#config#print_width = 10 " default is 'auto'
 
-"theme
+" Colorscheme
 "autocmd vimenter * ++nested colorscheme gruvbox
 colorscheme vim-monokai-tasty
