@@ -4,10 +4,15 @@ imap jj <Esc>
 " Syntax highlighting
 syntax on
 
+" Set FZF Default to Ripgrep (must install ripgrep)
+let $FZF_DEFAULT_COMMAND = 'rg --files --hidden --follow --no-ignore-vcs'
+
 " Options viewable by using :options
 " Set options viewable by using :set all
-set background=dark
+" Or help for individual configs can be accessed :help <name>
 set nocompatible
+set redrawtime=10000
+set background=dark
 set laststatus=2
 set noerrorbells
 set tabstop=2 softtabstop=2
@@ -74,12 +79,16 @@ call plug#end()
 " Set mapleader to space
 let mapleader = " "
 " Maps
+nmap <leader>hk :vsplit ~/.vim/hotkeys<cr>
 nmap <leader>gd <Plug>(coc-definition)
 nmap <leader>gr <Plug>(coc-references)
 nmap <leader>t :NERDTree<cr>
 nmap <leader><leader>p :Prettier<cr>
 nmap <leader><leader>g :GoFmt<cr>
 nmap <leader><leader>b :Black<cr>
+nmap <leader><leader>u :UndotreeToggle<cr>
+" Files (runs $FZF_DEFAULT_COMMAND if defined)
+nmap <leader><leader>f :Files<cr>
 nmap <leader><leader><leader>g :GoMetaLinter<cr>
 nnoremap <C-p> :GFiles<CR>
 nnoremap <leader><leader>c :call NERDComment(0,"toggle")<CR>
@@ -260,7 +269,7 @@ nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
 " Set the prettier CLI executable path
 let g:prettier#exec_cmd_path = "~/.vim/plugged/vim-prettier/node_modules/prettier"
 " Max line length that prettier will wrap on: a number or 'auto'
-let g:prettier#config#print_width = 10 " default is 'auto'
+let g:prettier#config#print_width = 100 " default is 'auto'
 
 " Colorscheme
 "autocmd vimenter * ++nested colorscheme gruvbox
